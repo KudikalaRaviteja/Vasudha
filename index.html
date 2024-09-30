@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIMATE</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="climate1-removebg-preview.png">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css">
+        <style>
+        /* .map{
+            width:100%;
+            height:100vh;
+        } */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0px;
+            padding: 0px;
+            line-height: 1.6;
+        }
+
+        header {
+          
+            background: #dafffa;
+            color: rgb(0, 0, 0);
+            padding: 0;
+            text-align: center;
+            position: relative;
+        
+        }
+
+        .logo {
+            height: 150px;
+            width: 150px;
+        }
+
+        .left-logo {
+            position: absolute;
+            top: 4px;
+            left: 10px;
+        }
+
+        .right-logo {
+            position: absolute;
+            top: 4px;
+            right: 10px;
+        }
+
+        #click {
+            font-size: 25px;
+        }
+     
+       
+.dropbtn{
+   float: right;
+   position: inherit;
+   top: 10px;
+   right: 10px;
+  appearance: none;
+  background-color: #333;
+  border: 2px solid #1A1A1A;
+  border-radius: 30px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 40px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.dropbtn:disabled {
+  pointer-events: none;
+}
+
+.dropbtn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.dropbtn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+          
+          
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 50px;
+            top: 50px;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+          }
+          
+          .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+          }
+          
+          .dropdown-content a:hover {
+            background-color: #afadad;
+          }
+          
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+         
+          .mandal{
+            height: 500px;
+            border: 5px solid black;
+            position: relative;
+            top: 30px;
+          }
+
+
+
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        h1 {
+            font-family: "Anton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 3rem;
+        }
+
+
+        ul.topnav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+           justify-content: left;
+            align-items: center;
+        }
+
+        ul.topnav li {
+            float: left;
+        }
+
+        ul.topnav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .icon{
+            display: none;
+        }
+
+        ul.topnav li a:hover:not(.active) {
+            background-color: grey;
+        }
+
+        ul.topnav li a.active {
+            background-color: #3d9dca;
+        }
+
+        ul.topnav li.right {
+            float: right;
+        }
+
+        .menu-icon {
+            display:none;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            padding: 14px 16px;
+        }
+
+        @media screen and (max-width: 768px) {
+            ul.topnav li {
+                display: none;
+            }
+
+            ul.topnav li.icon {
+                display: block;
+                float: right;
+            }
+
+            ul.topnav.responsive {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            ul.topnav.responsive li {
+                display: block;
+                float: left;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        #help:hover {
+            background-color: #00ff2a;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                height: 100px;
+                width: 100px;
+            }
+
+            .left-logo, .right-logo {
+                height: 100px;
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            #add{
+                font-size: 12px;
+            }
+            .logo {
+                height: 100px;
+                width: 100px;
+            }
+
+            .left-logo, .right-logo {
+                height: 90px;
+                width: 90px;
+            }
+        }
+
+      
+
+    </style>
+</head>
+<body>
+    <header class="py-3">
+        <div class="container"> 
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto left-logo">
+                    <img src="nitwcolor-removebg-preview.png" alt="Logo" class="logo img-fluid">
+                </div>
+                <div class="col text-center">
+                    <strong>
+                        <p class="mb-0">
+                            <span id="add"><div style="padding-top: 10px; color: #ff0000; font-family: 'Times New Roman', Times, serif;
+                            font-size: 2em;">
+                                VASUDHA GEOANALYTICS PRIVATE LIMITED</div> </span>
+                        </p>
+                    </strong>
+                    <h1 class="my-2">CLIMATE PREDICTION</h1>
+                </div>
+                <div class="col-auto right-logo">
+                    <img src="climate1-removebg-preview.png" alt="Logo" class="logo img-fluid">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <ul class="topnav" id="myTopnav">
+        <li><a class="active" target="_blank"  href="openlayers1.html" id="layer1">Norrmal Annual Rainfall</a></li>
+        <li><a href="openlayers2.html" target="_blank" id="layer2">Daily Average Rainfall</a></li>
+        <li><a href="openlayers3.html" target="_blank" id="layer3">Daily Average Maximum Temperature</a></li>
+        <li><a href="openlayers4.html" target="_blank" id="layer4">Daily Average Minimum Temperature</a></li>
+        <li><a href="openlayers5.html" target="_blank" id="layer5">Observed Rainfall</a></li>
+        <li><a href="openlayers6.html" target="_blank" id="layer6">Predicted Rainfall</a></li>
+        <li><a href="#foot">About</a></li>
+        <li class="icon">
+            <a href="javascript:void(0);" onclick="toggleMenu()">&#9776;</a>
+        </li>
+    </ul>
+<!-- Example single danger button -->
+<div class="dropdown">
+    <button class="dropbtn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+      </svg></button>
+    <div class="dropdown-content">
+      <a href="#mandal">Mandal Border</a>
+      <a href="#">Terrain</a>
+      <a href="#">Land Cover</a>
+    </div>
+  </div>
+
+    <main class="container my-5">
+       <div class="mandal" id="mandal">
+
+
+       </div>
+
+    </main>
+    <footer class="py-3" id="foot">
+        <p class="mb-0"></p>
+        <p>&copy; 2024 Climate Prediction. All rights reserved.</p>
+        
+       
+    </footer>
+    <script>
+        const map = new ol.Map({
+            target: 'mandal',
+            layers: [new ol.layer.Tile({
+            source: new ol.source.OSM()
+        })],
+            view: new ol.View({
+                    projection: 'EPSG:4326', // Set projection to EPSG:4326
+                    center: [79.7, 17.92], // Set center to [79.7, 17.92]
+                    zoom: 10
+                })
+            });
+//             const manSrc = new ol.source.ImageWMS({
+//     url: 'http://localhost:8080/geoserver/Warangal/wms',
+//     params: { 'LAYERS': 'Warangal:warangal_mandals', 'CRS': 'EPSG:4326' }, // Warangal
+//     serverType: 'geoserver'
+// });
+// // Create the WMS layers
+// const manLay = new ol.layer.Image({
+//     source: manSrc
+// });
+
+// map.addLayer(manLay)
+ // Load JSON data (assuming it follows GeoJSON format)
+ var jsonSource = new ol.source.Vector({
+            url: 'warangal.json', // Path to your .json file
+            format: new ol.format.GeoJSON() // Still using GeoJSON format
+        });
+
+        // Create a vector layer to display JSON (GeoJSON) data
+        var jsonLayer = new ol.layer.Vector({
+            source: jsonSource,
+            style: new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'blue',
+                    width: 2
+                }),
+                fill: new ol.style.Fill({
+                    color: 'rgba(0, 0, 255, 0.1)'
+                })
+            })
+        });
+        map.addLayer(jsonLayer)
+    </script>
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+</html>
