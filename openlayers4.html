@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Average Minimum Temperature</title>
+    <script src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css"> 
+    <style>
+        .map{
+            width: 100%;
+            height: 60vh;
+        }
+        #info {
+            clear: both;
+            padding: 10px;
+            background: #fff;
+            max-height: 20vh;
+            width: 70%; /* Match the map width */
+            overflow-y: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        tr, td {
+            border: 2px solid #ddd;
+            text-align: left;
+            padding: 12px;
+            width: 50%;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+    </style>    
+</head>
+<body>
+    <div class="map" id="map"></div>
+    <div id="info">
+        <p>Click on any place of Warangal district map to get Daily Average Minimum Temperature of that place</p>
+    </div>
+    <script>
+        var map=new ol.Map({
+            view:new ol.View({
+                projection:'EPSG:4326',
+                center:[79.76832719221736, 17.849853456970123],
+                zoom:10
+            }),
+            layers:[new ol.layer.Tile({
+                source:new ol.source.OSM()
+            })],
+            target:'map'
+        })
+        src=new ol.source.ImageWMS({
+            url:'https://madhaveya.site/geoserver/Historical/wms',
+            params: { 'LAYERS': 'Historical:MergedTmin', 'CRS': 'EPSG:4326' }, 
+            serverType:'geoserver'
+        })
+        lay=new ol.layer.Image({
+            source:src,
+            opacity:0.6
+        })
+       map.addLayer(lay)
+  
+
+       map.on('singleclick', function (evt) {
+        const viewResolution = map.getView().getResolution();
+        const url = src.getFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:4326', { 'INFO_FORMAT': 'application/json' });
+        const layerName='Daily Average Minimum Temperature'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let infoHtml = `<table><tr>`;
+                if (data.features && data.features.length > 0) {
+                    const properties = data.features[0].properties;
+                    for (const key in properties) {
+                        infoHtml += `<td><strong>${key}</strong></td>`;
+                    }
+                    infoHtml+=`</tr><tr>`
+                    for (const key in properties) {
+                        const value = parseFloat(properties[key]);
+                        const displayValue = (value < 0) ? '-' : value.toFixed(3);
+                        infoHtml += `<td>${displayValue}</td>`;
+                    }
+                    infoHtml+=`</tr>`
+                } else {
+                    infoHtml += '<tr><td colspan="2">No features found.</td></tr>';
+                }
+                infoHtml += `</table>`;
+                document.getElementById('info').innerHTML = infoHtml; // Only show current layer info
+
+                 // Get the map extent
+                 var extent = map.getView().calculateExtent(map.getSize());
+    
+                // Get the clicked coordinate
+                var clickedCoordinate = evt.coordinate;
+
+                // Check if the clicked coordinate is within the extent
+                 if (!ol.extent.containsCoordinate(extent, clickedCoordinate)) {
+                    clearFeatureInfo();
+                     }
+                })
+            .catch(error => {
+                console.error('Error fetching feature info:', error);
+                document.getElementById('info').innerHTML = `<p><strong>${layerName}:</strong> Error fetching feature info.</p>`;
+            });
+
+});
+
+function clearFeatureInfo() {
+    document.getElementById('info').innerHTML = '<p>Click on Warangel district map to get Daily Average Minimum Temperature</p>';
+}
+    </script>
+
+</body>
+</html>
