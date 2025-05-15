@@ -15,37 +15,37 @@ const map = new ol.Map({
 
 // Create the sources for the WMS layers
 const source2 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Historical/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Historical/wms',
     params: { 'LAYERS': 'Historical:MergedRainfall', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source2
     serverType: 'geoserver'
 });
 
 const source3 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Historical/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Historical/wms',
     params: { 'LAYERS': 'Historical:MergedTmax', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source3
     serverType: 'geoserver'
 });
 
 const source4 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Historical/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Historical/wms',
     params: { 'LAYERS': 'Historical:MergedTmin', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source4
     serverType: 'geoserver'
 });
 
 const source5 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Historical/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Historical/wms',
     params: { 'LAYERS': 'Historical:Normal_Rainfall', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source4
     serverType: 'geoserver'
 });
 
 const source6 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Real_Time/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Real_Time/wms',
     params: { 'LAYERS': 'Real_Time:June_1_17', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source4
     serverType: 'geoserver'
 });
 
 const source7 = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Prediction/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Prediction/wms',
     params: { 'LAYERS': 'Prediction:June2024', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source4
     serverType: 'geoserver'
 });
@@ -283,7 +283,7 @@ function clearFeatureInfo7() {
 
 
 const shpSrc = new ol.source.ImageWMS({
-    url: 'http://54.210.142.222:8080/geoserver/Warangal/wms',
+    url: 'http://54.166.153.107:8080/geoserver/Warangal/wms',
     params: { 'LAYERS': '	Warangal:dist', 'CRS': 'EPSG:4326' }, // Set workspace and layer for source4
     serverType: 'geoserver'
 });
